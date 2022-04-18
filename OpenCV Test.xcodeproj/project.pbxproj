@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F0B806E5280E0C2D005BAB31 /* Try_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Try_1.mp4; sourceTree = "<group>"; };
 		F0EAA2ED28076C5200748E4B /* Attempt3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt3.mp4; sourceTree = "<group>"; };
 		F0EAA2EE28076C5200748E4B /* Attempt5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt5.mp4; sourceTree = "<group>"; };
 		F0EAA2EF28076C5300748E4B /* Attempt2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt2.mp4; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 				F0EAA2EE28076C5200748E4B /* Attempt5.mp4 */,
 				F0EAA2F228076E4A00748E4B /* Attempt6.mp4 */,
 				F0EAA2F4280E009D00748E4B /* Attempt7.mp4 */,
+				F0B806E5280E0C2D005BAB31 /* Try_1.mp4 */,
 				F0EABF4B27F4EB230013228E /* main.cpp */,
 			);
 			path = "OpenCV Test";

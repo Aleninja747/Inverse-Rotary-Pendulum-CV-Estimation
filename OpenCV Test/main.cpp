@@ -116,7 +116,7 @@ void calibrate_camera(Mat& cameraMatrix, Mat& distCoeffs, bool visualize=false, 
 int main(){
     cv::Mat cameraMatrix,distCoeffs;
     calibrate_camera(cameraMatrix, distCoeffs);
-    VideoCapture cap("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/Attempt7.mp4");
+    VideoCapture cap("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/TRY_1.mp4");
     
     // Check if camera opened successfully
     if(!cap.isOpened()){
@@ -187,7 +187,7 @@ int main(){
     // Closes all the frames
     destroyAllWindows();
     std::ofstream outputFile;
-    outputFile.open("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/angles_7.csv");
+    outputFile.open("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/angles_try_1.csv");
     for (int i=0; i<avg_angles.size(); i++) {
         avg_angles[i]*=180/M_PI;
         outputFile<<avg_angles[i]<<",";
