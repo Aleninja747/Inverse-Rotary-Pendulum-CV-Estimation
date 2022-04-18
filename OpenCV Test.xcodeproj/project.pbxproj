@@ -23,6 +23,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F0EAA2ED28076C5200748E4B /* Attempt3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt3.mp4; sourceTree = "<group>"; };
+		F0EAA2EE28076C5200748E4B /* Attempt5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt5.mp4; sourceTree = "<group>"; };
+		F0EAA2EF28076C5300748E4B /* Attempt2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt2.mp4; sourceTree = "<group>"; };
+		F0EAA2F028076C5300748E4B /* Attempt4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt4.mp4; sourceTree = "<group>"; };
+		F0EAA2F128076C5300748E4B /* Attempt1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt1.mp4; sourceTree = "<group>"; };
+		F0EAA2F228076E4A00748E4B /* Attempt6.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt6.mp4; sourceTree = "<group>"; };
+		F0EAA2F4280E009D00748E4B /* Attempt7.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt7.mp4; sourceTree = "<group>"; };
 		F0EABF4827F4EB230013228E /* OpenCV Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OpenCV Test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EABF4B27F4EB230013228E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +45,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0EAA2F3280DEF9B00748E4B /* CalibrationImages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CalibrationImages;
+			sourceTree = "<group>";
+		};
 		F0EABF3F27F4EB230013228E = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +71,14 @@
 		F0EABF4A27F4EB230013228E /* OpenCV Test */ = {
 			isa = PBXGroup;
 			children = (
+				F0EAA2F3280DEF9B00748E4B /* CalibrationImages */,
+				F0EAA2F128076C5300748E4B /* Attempt1.mp4 */,
+				F0EAA2EF28076C5300748E4B /* Attempt2.mp4 */,
+				F0EAA2ED28076C5200748E4B /* Attempt3.mp4 */,
+				F0EAA2F028076C5300748E4B /* Attempt4.mp4 */,
+				F0EAA2EE28076C5200748E4B /* Attempt5.mp4 */,
+				F0EAA2F228076E4A00748E4B /* Attempt6.mp4 */,
+				F0EAA2F4280E009D00748E4B /* Attempt7.mp4 */,
 				F0EABF4B27F4EB230013228E /* main.cpp */,
 			);
 			path = "OpenCV Test";
@@ -239,6 +261,70 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				"HEADER_SEARCH_PATHS[arch=*]" = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				LIBRARY_SEARCH_PATHS = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-I/usr/local/opt/opencv/include/opencv4",
+					"-L/usr/local/opt/opencv/lib",
+					"-lopencv_gapi",
+					"-lopencv_stitching",
+					"-lopencv_alphamat",
+					"-lopencv_aruco",
+					"-lopencv_barcode",
+					"-lopencv_bgsegm",
+					"-lopencv_bioinspired",
+					"-lopencv_ccalib",
+					"-lopencv_dnn_objdetect",
+					"-lopencv_dnn_superres",
+					"-lopencv_dpm",
+					"-lopencv_face",
+					"-lopencv_freetype",
+					"-lopencv_fuzzy",
+					"-lopencv_hfs",
+					"-lopencv_img_hash",
+					"-lopencv_intensity_transform",
+					"-lopencv_line_descriptor",
+					"-lopencv_mcc",
+					"-lopencv_quality",
+					"-lopencv_rapid",
+					"-lopencv_reg",
+					"-lopencv_rgbd",
+					"-lopencv_saliency",
+					"-lopencv_sfm",
+					"-lopencv_stereo",
+					"-lopencv_structured_light",
+					"-lopencv_phase_unwrapping",
+					"-lopencv_superres",
+					"-lopencv_optflow",
+					"-lopencv_surface_matching",
+					"-lopencv_tracking",
+					"-lopencv_highgui",
+					"-lopencv_datasets",
+					"-lopencv_text",
+					"-lopencv_plot",
+					"-lopencv_videostab",
+					"-lopencv_videoio",
+					"-lopencv_viz",
+					"-lopencv_wechat_qrcode",
+					"-lopencv_xfeatures2d",
+					"-lopencv_shape",
+					"-lopencv_ml",
+					"-lopencv_ximgproc",
+					"-lopencv_video",
+					"-lopencv_xobjdetect",
+					"-lopencv_objdetect",
+					"-lopencv_calib3d",
+					"-lopencv_imgcodecs",
+					"-lopencv_features2d",
+					"-lopencv_dnn",
+					"-lopencv_flann",
+					"-lopencv_xphoto",
+					"-lopencv_photo",
+					"-lopencv_imgproc",
+					"-lopencv_core",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +333,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				"HEADER_SEARCH_PATHS[arch=*]" = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				LIBRARY_SEARCH_PATHS = "/usr/local/Cellar/opencv/4.5.5/include/**";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "/usr/local/Cellar/opencv/4.5.5/include/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
