@@ -113,6 +113,21 @@ void calibrate_camera(Mat& cameraMatrix, Mat& distCoeffs, bool visualize=false, 
     }
 }
 
+void two_marker_angles(std::vector<std::vector<cv::Point2f>>& markerCorners, std::vector<double>& avg_angles, std::vector<double>& times_vec, double current_time){
+    std::vector<double> angles;
+    for (int i=0; i<markerCorners.size()-1; i++) {
+        angles = {};
+        for(int j=0; j<markerCorners[i].size(); j++){
+            double x_1=markerCorners[i][j].x, x_2 = markerCorners[i+1][j].x,
+            y_1 = markerCorners[i][j].y, y_2 = markerCorners[i+1][j].y;
+            angles.push_back(atan2(abs(y_2-y_1),x_2-x_1));
+        }
+        avg_angles.push_back(vec_sum(angles)/double(angles.size()));
+        times_vec.push_back(current_time);
+    }
+}
+
+
 int main(){
     cv::Mat cameraMatrix,distCoeffs;
     calibrate_camera(cameraMatrix, distCoeffs);
@@ -130,9 +145,11 @@ int main(){
     // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
     VideoWriter video("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/outcpp.avi", cv::VideoWriter::fourcc('M','J','P','G'), 30, Size(frame_width,frame_height));
     
-    std::vector<double> avg_angles;
+    std::vector<double> avg_angles, times_vec;
+    double current_time = 0;
+    
     while(1){
-        
+        bool calc_angles = true;
         Mat frame;
         // Capture frame-by-frame
         cap >> frame;
@@ -147,19 +164,13 @@ int main(){
         cv::Ptr<cv::aruco::DetectorParameters> parameters = cv::aruco::DetectorParameters::create();
         cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
         cv::aruco::detectMarkers(frame, dictionary, markerCorners, markerIds, parameters, rejectedCandidates);
-        std::vector<double> angles;
-        if (markerCorners.size()>1) {
-            for (int i=0; i<markerCorners.size()-1; i++) {
-                angles = {};
-                for(int j=0; j<markerCorners[i].size(); j++){
-                    double x_1=markerCorners[i][j].x, x_2 = markerCorners[i+1][j].x,
-                    y_1 = markerCorners[i][j].y, y_2 = markerCorners[i+1][j].y;
-                    angles.push_back(atan2(y_2-y_1,x_2-x_1));
-                }
-                avg_angles.push_back(vec_sum(angles)/double(angles.size()));
-            }
+        if (markerCorners.size()>1 && calc_angles) {
+            two_marker_angles(markerCorners, avg_angles, times_vec, current_time);
         }
-        
+        else if(!calc_angles){
+            markerIds;
+        }
+        current_time += 1.0/30.0;
         cv::Mat outputFrame = frame.clone();
         if (markerIds.size() > 0) {
             cv::aruco::drawDetectedMarkers(outputFrame, markerCorners, markerIds);
@@ -190,7 +201,7 @@ int main(){
     outputFile.open("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/angles_try_1.csv");
     for (int i=0; i<avg_angles.size(); i++) {
         avg_angles[i]*=180/M_PI;
-        outputFile<<avg_angles[i]<<",";
+        outputFile<<times_vec[i]<<","<<avg_angles[i]<<"\n";
     }
     outputFile.close();
     std::cout<<"Done\n";
