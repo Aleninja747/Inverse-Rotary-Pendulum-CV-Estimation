@@ -23,6 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F09C82732819D86300462AC0 /* Coordinates_attempt.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Coordinates_attempt.mp4; sourceTree = "<group>"; };
+		F09C82742819E7B800462AC0 /* coordinate_trial_2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = coordinate_trial_2.mp4; sourceTree = "<group>"; };
 		F0B806E5280E0C2D005BAB31 /* Try_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Try_1.mp4; sourceTree = "<group>"; };
 		F0EAA2ED28076C5200748E4B /* Attempt3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt3.mp4; sourceTree = "<group>"; };
 		F0EAA2EE28076C5200748E4B /* Attempt5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attempt5.mp4; sourceTree = "<group>"; };
@@ -80,6 +82,8 @@
 				F0EAA2EE28076C5200748E4B /* Attempt5.mp4 */,
 				F0EAA2F228076E4A00748E4B /* Attempt6.mp4 */,
 				F0EAA2F4280E009D00748E4B /* Attempt7.mp4 */,
+				F09C82732819D86300462AC0 /* Coordinates_attempt.mp4 */,
+				F09C82742819E7B800462AC0 /* coordinate_trial_2.mp4 */,
 				F0B806E5280E0C2D005BAB31 /* Try_1.mp4 */,
 				F0EABF4B27F4EB230013228E /* main.cpp */,
 			);
