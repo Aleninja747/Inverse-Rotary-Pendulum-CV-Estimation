@@ -15,6 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <string>
 
 using namespace cv;
 
@@ -85,8 +86,10 @@ void calibrate_camera(Mat& cameraMatrix, Mat& distCoeffs, bool visualize=false, 
             objpoints.push_back(objp);
             imgpoints.push_back(corner_pts);
         }
+        imwrite("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/CalibrationImages/Calibration_image_"+std::to_string(i)+".jpg", frame);
         if (visualize) {
             cv::imshow("Image",frame);
+            
             cv::waitKey(0);
         }
         
@@ -133,13 +136,13 @@ std::vector<double> markerCenter(std::vector<std::vector<cv::Point2f>> markerCor
     for (int j=0; j<markerCorners.size(); j++) {
         
         double xCenter=0, yCenter=0;
-        for (int i=0; i<markerCorners[j].size()-2; i++) {
-            xCenter+=(markerCorners[j][i].x+markerCorners[j][i+2].x)/2;
-            yCenter+=(markerCorners[j][i].y+markerCorners[j][i+2].y)/2;
+        for (int i=0; i<markerCorners[j].size(); i++) {
+            xCenter+=markerCorners[j][i].x;
+            yCenter+=markerCorners[j][i].y;
         }
-        xCenter/=2;
+        xCenter/=4;
         centerCoords.push_back(xCenter);
-        yCenter/=2;
+        yCenter/=4;
         centerCoords.push_back(yCenter);
     }
     times_vec.push_back(current_time);
@@ -147,7 +150,7 @@ std::vector<double> markerCenter(std::vector<std::vector<cv::Point2f>> markerCor
 }
 
 int main(){
-    bool calc_angles = false;
+    bool calc_angles = false, save=false, view=false;
     cv::Mat cameraMatrix,distCoeffs;
     calibrate_camera(cameraMatrix, distCoeffs);
     VideoCapture cap("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/coordinate_trial_2.mp4");
@@ -163,6 +166,10 @@ int main(){
     
     // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
     VideoWriter video("/Users/jorgericaurte/Documents/University/Research/Invertec Pendulum openCV/OpenCV Test/OpenCV Test/outcpp.avi", cv::VideoWriter::fourcc('M','J','P','G'), 30, Size(frame_width,frame_height));
+    if (!save) {
+        video.release();
+    }
+    
     
     std::vector<double> avgAngles, timesVec;
     std::vector<std::vector<double>> centerCoordVec;
@@ -191,28 +198,27 @@ int main(){
         }
         current_time += 1.0/30.0;
         cv::Mat outputFrame = frame.clone();
-        if (markerIds.size() > 0) {
+        if (markerIds.size() > 0 && view) {
             cv::aruco::drawDetectedMarkers(outputFrame, markerCorners, markerIds);
             std::vector<cv::Vec3d> rvecs, tvecs;
             cv::aruco::estimatePoseSingleMarkers(markerCorners, 0.05, cameraMatrix, distCoeffs, rvecs, tvecs);
             // draw axis for each marker
-            for(int i=0; i<markerIds.size(); i++)
-                cv::drawFrameAxes(outputFrame, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
+                for(int i=0; i<markerIds.size(); i++)
+                    cv::drawFrameAxes(outputFrame, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
+            cv::aruco::drawDetectedMarkers(outputFrame, markerCorners, markerIds);
         }
-        cv::aruco::drawDetectedMarkers(outputFrame, markerCorners, markerIds);
-        imshow( "Frame", outputFrame );
+        if (view) {
+            imshow( "Frame", outputFrame );
+        }
         // Write the frame into the file 'outcpp.avi'
-        video.write(outputFrame);
-        
-        // Press  ESC on keyboard to exit
-        char c=(char)waitKey(25);
-        if(c==27)
-            break;
+        if (save) {
+            video.write(outputFrame);
+        }
     }
     
     // When everything done, release the video capture object
     cap.release();
-    video.release();
+    if(save) video.release();
     
     // Closes all the frames
     destroyAllWindows();
